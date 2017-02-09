@@ -28,7 +28,13 @@ class DatabaseSeeder extends Seeder
             $randomStocks = $stocks->random(rand(1, 3));
 
             $product->categories()->attach($randomCategories->pluck('id'));
-            $product->stocks()->attach($randomStocks->pluck('id'));
+
+            // associate with stocks
+            foreach ($randomStocks as $stock) {
+                $product->stocks()->attach($stock->id, [
+                    'products_count' => rand(10, 100)
+                ]);
+            }
         });
 
         // Empty categories

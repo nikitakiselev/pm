@@ -22,7 +22,12 @@
                     </p>
 
                     <p class="text-muted">
-                        Склады: {{ $product->stocks->pluck('title')->implode(', ') }}
+                        Склады:
+
+                        @foreach($product->stocks as $stock)
+                            {{ $stock->title }}
+                            ({{ $stock->pivot->products_count }})@if (! $loop->last),@endif
+                        @endforeach
                     </p>
 
                     <p>{!! $product->description !!}</p>
