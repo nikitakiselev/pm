@@ -24,5 +24,8 @@ class DatabaseSeeder extends Seeder
 
             $product->categories()->attach($randomCategories->pluck('id'));
         });
+
+        // Empty categories
+        factory(Category::class, 5)->create();
     }
 }

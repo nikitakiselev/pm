@@ -15,7 +15,19 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         view()->composer('category.sidebar', function ($view) {
-            $view->with('categories', Category::all());
+            $categories = Category::all();
+
+            // $categories = Category::withCount('products')->get();
+
+//            $categories = Category::withCount('products')
+//                ->orderBy('products_count', 'desc')
+//                ->get();
+
+//            $categories = Category::withCount('products')
+//                ->has('products')
+//                ->get();
+
+            $view->with('categories', $categories);
         });
     }
 
