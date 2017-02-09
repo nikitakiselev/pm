@@ -17,7 +17,15 @@
         @include('partials.navbar')
 
         <div class="container">
-            @yield('content')
+            <div class="row">
+                <div class="col-md-8">
+                    @yield('content')
+                </div>
+
+                <div class="col-md-4">
+                    @yield('sidebar')
+                </div>
+            </div>
         </div>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

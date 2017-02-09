@@ -25,3 +25,7 @@
 
     {{ $products->links() }}
 @endsection
+
+@section('sidebar')
+    @include('category.sidebar')
+@endsection
