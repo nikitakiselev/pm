@@ -27,7 +27,10 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = $this->product->with('categories')->latest()->paginate();
+        $products = $this->product
+            ->with(['categories', 'stocks'])
+            ->latest()
+            ->paginate();
 
         return view('product.index', compact('products'));
     }

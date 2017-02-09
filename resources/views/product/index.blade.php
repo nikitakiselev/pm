@@ -21,6 +21,10 @@
                         @endforeach
                     </p>
 
+                    <p class="text-muted">
+                        Склады: {{ $product->stocks->pluck('title')->implode(', ') }}
+                    </p>
+
                     <p>{!! $product->description !!}</p>
                 </div>
             @endforeach

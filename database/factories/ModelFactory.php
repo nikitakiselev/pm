@@ -29,3 +29,10 @@ $factory->define(App\Product::class, function (Faker\Generator $faker) {
         'preview' => $faker->imageUrl(),
     ];
 });
+
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\Stock::class, function (Faker\Generator $faker) {
+    return [
+        'title' => $faker->word,
+    ];
+});

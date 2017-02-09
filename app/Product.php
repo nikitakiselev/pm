@@ -50,4 +50,14 @@ class Product extends Model
     {
         return $this->belongsToMany(Category::class);
     }
+
+    /**
+     * Stocks the product exists
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function stocks()
+    {
+        return $this->belongsToMany(Stock::class);
+    }
 }
