@@ -12,6 +12,10 @@
                     <h2>{{ $product->title }}</h2>
 
                     <p>
+                        <span class="label label-info">{{ $product->amount }}</span>
+                    </p>
+
+                    <p>
                         @foreach($product->categories as $category)
                             <span class="label label-default">{{ $category->title }}</span>
                         @endforeach
@@ -28,4 +32,5 @@
 
 @section('sidebar')
     @include('category.sidebar')
+    @include('category.low-price')
 @endsection

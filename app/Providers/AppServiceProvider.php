@@ -15,7 +15,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         view()->composer('category.sidebar', function ($view) {
-            $categories = Category::all();
+//            $categories = Category::all();
 
             // $categories = Category::withCount('products')->get();
 
@@ -23,9 +23,32 @@ class AppServiceProvider extends ServiceProvider
 //                ->orderBy('products_count', 'desc')
 //                ->get();
 
-//            $categories = Category::withCount('products')
-//                ->has('products')
-//                ->get();
+            $categories = Category::withCount('products')
+                ->has('products')
+                ->get();
+
+            $view->with('categories', $categories);
+        });
+
+        view()->composer('category.low-price', function ($view) {
+/*            $maxPrice = 500;
+
+            $maxPriceCondition = function ($query) use ($maxPrice) {
+                $query->where('amount', '<=', $maxPrice);
+            };*/
+
+            $categories = Category::whereHas('products', function ($query) {
+                $maxPrice = 500;
+
+                $query->where('amount', '<=', $maxPrice);
+            })
+                ->withCount(['products' => function ($query) {
+                        $maxPrice = 500;
+
+                        $query->where('amount', '<=', $maxPrice);
+                    }])
+                ->orderBy('products_count', 'desc')
+                ->get();
 
             $view->with('categories', $categories);
         });
