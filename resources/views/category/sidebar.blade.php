@@ -3,13 +3,12 @@
         Категории
     @endslot
 
-    <ul class="list-group">
+    <div class="list-group">
         @foreach($categories as $category)
-            <li class="list-group-item">
-                {{--<span class="badge">{{ $category->products->count() }}</span>--}}
+            <a href="{{ route('category.show', $category) }}" class="list-group-item">
                 <span class="badge">{{ $category->products_count }}</span>
                 {{ $category->title }}
-            </li>
+            </a>
         @endforeach
-    </ul>
+    </div>
 @endcomponent
